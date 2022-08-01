@@ -1,24 +1,21 @@
-# README
+## 概要
+みんなにおすすめしたい商品・サービス・作品などを投稿できるコミュニティサイトです。
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## 目的
+自分の好きな映画や本、使って便利だった商品やサービスなどを紹介したい。
+いろんな人の「おすすめ」を教えてもらって、その中から新しい「好き」を発見したい。
 
-Things you may want to cover:
+## サイト説明
+会員登録をすると、おすすめしたい商品・サービス・作品などを投稿できます。
+みなさんが登録した
+キーワードやタグで検索ができます。
+気に入った記事にはいいねができます。
 
-* Ruby version
+#開発環境
+Ruby 3
+Rails 6.1.6
 
-* System dependencies
+#設計書
 
-* Configuration
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+#使用素材
