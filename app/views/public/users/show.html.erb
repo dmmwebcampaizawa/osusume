@@ -1,1 +1,24 @@
-<h1>会員マイページ画面</h1>
+<div class="container">
+  <div class="row mt-4">
+    <div class='mx-auto col- border-right'>
+      <%= render 'layouts/sideber' %>
+    </div>
+
+    <div class='ml-1 col-10 mt-4'>
+      <h3>マイページ</h3>
+      <div class='bg-warning rounded-pill p-1 mb-3'></div>
+
+      <h4><%= current_user.name %></h4>
+      <p><%= current_user.email %></p>
+
+      <%= link_to "登録情報を変更する", edit_user_path(current_user.id), class: 'btn btn-primary' %>
+
+      <h3 class='mt-4'>おすすめした商品</h3>
+      <div class='bg-warning rounded-pill p-1 mb-3'></div>
+
+       <%= link_to "TOPページ", '/', class: 'btn btn-primary' %>
+<!--ここまで-->
+    </div>
+
+  </div>
+</div>

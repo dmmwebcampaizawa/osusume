@@ -1,1 +1,32 @@
-<h1>会員の登録情報編集画面</h1>
+<div class="container">
+  <div class="row mt-4">
+    <div class='mx-auto col- border-right'>
+      <%= render 'layouts/sideber' %>
+    </div>
+
+    <div class='ml-1 col-10 mt-4'>
+      <h3>会員情報変更</h3>
+      <div class='bg-warning rounded-pill p-1 mb-3'></div>
+
+       <%= form_with model: @user do |f| %>
+
+        <div class="field">
+          <%= f.label :ニックネーム %><br />
+          <%= f.text_field :name, autofocus: true, autocomplete: "inputName" %>
+        </div>
+
+        <div class="field">
+          <%= f.label :メールアドレス %><br />
+          <%= f.email_field :email, autofocus: true, autocomplete: "inputEmail" %>
+        </div>
+
+        <%= f.submit "内容を保存", class: 'btn btn-success' %>
+
+        <%= link_to "退会する", unsubscribe_path, class: 'btn btn-danger' %>
+      <% end %>
+
+
+    </div>
+  </div>
+</div>
+

@@ -1,1 +1,43 @@
-<h1>記事投稿画面</h1>
+<div class="container">
+  <div class="row mt-4">
+    <div class='mx-auto col- border-right'>
+      <%= render 'layouts/sideber' %>
+    </div>
+
+    <div class='ml-1 col-10 mt-4'>
+      <h3>商品をおすすめする</h3>
+      <div class='bg-warning rounded-pill p-1 mb-3'></div>
+
+      <p>買ってみて、使ってみて、良かった商品を教えてください！<p>
+
+       <%= form_with model: @blog do |f| %>
+
+        <div class="field">
+          <%= f.label :タイトル %><br />
+          <%= f.text_field :title, autofocus: true, autocomplete: "title" %>
+        </div>
+
+        <div class="field">
+          <%= f.label :紹介文 %><br />
+          <%= f.text_field :body, autofocus: true, autocomplete: "body" %>
+        </div>
+
+        <div class="field">
+          <%= f.label :おすすめしたい人 %><br />
+          <%= f.text_field :man, autofocus: true, autocomplete: "man" %>
+        </div>
+
+        <div class="field">
+          <%= f.label :商品が購入できるリンク%><br />
+          <%= f.text_field :link, autofocus: true, autocomplete: "link" %>
+        </div>
+
+
+        <%= f.submit "投稿する", class: 'btn btn-success' %>
+
+      <% end %>
+
+
+    </div>
+  </div>
+</div>
