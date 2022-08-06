@@ -11,18 +11,36 @@
       <!--商品-->
       <div class="container">
       <div class="row">
+      <% @blogs.each do |blog| %>
       <div class="col">
-        aaaaaaaaaaaaaaaaaaaaaaaa
+       <%= link_to blog_path(blog.id) do %>
+         <% if blog.image.attached? %>
+           <%= image_tag blog.image, size: "250x250" %>
+         <% else %>
+           <%= image_tag 'no_image', size: "250x250" %>
+         <% end %>
+      <% end %>
+      <p><%= blog.title %></p>
+      <!--星レビュー-->
+      <div id="star-rate<%= blog.id %>">
+      <script>
+      $('#star-rate<%= blog.id %>').empty();
+      $('#star-rate<%= blog.id %>').raty({
+      size      : 36,
+      starOff   : '<%= asset_path('star-off.png') %>',
+      starOn    : '<%= asset_path('star-on.png') %>',
+      starHalf  : '<%= asset_path('star-half.png') %>',
+      half      : false,
+      readOnly: true,
+      score: <%= blog.star %>,
+      });
+      </script>
       </div>
       
-      <div class="col">
-        aaaaaaaaaaaaaaaaaaaaaaa
-      </div>
-    
-      <div class="col">
-        aaaaaaaaaaaaaaaaaaaaaaa
-      </div>
-    
+    </div>
+    <% end %>
+      
+  
       </div>
       </div>
 

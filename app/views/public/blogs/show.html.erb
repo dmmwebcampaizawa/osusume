@@ -1,1 +1,44 @@
-<h1>記事詳細画面</h1>
+<div class="container">
+  <div class="row mt-4">
+    <div class='mx-auto col- border-right'>
+      <%= render 'layouts/sideber' %>
+    </div>
+
+    <div class='ml-1 col-10 mt-4'>
+      <h3><%= @blog.title %></h3>
+      <div class='bg-warning rounded-pill p-1 mb-3'></div>
+
+<% if @blog.image.attached? %>
+  <%= image_tag @blog.image, size: "300x300" %>
+<% else %>
+  <%= image_tag 'no_image', size: "300x300" %>
+<% end %>
+
+<h5>おすすめしたい人</h5>
+<p><%= @blog.man %></p>
+
+おすすめ度
+<div id="star-rate<%= @blog.id%>"></div>
+  <script>
+  $('#star-rate<%= @blog.id %>').empty();
+  $('#star-rate<%= @blog.id%>').raty({
+  size      : 36,
+  starOff   : '<%= asset_path('star-off.png') %>',
+  starOn    : '<%= asset_path('star-on.png') %>',
+  starHalf  : '<%= asset_path('star-half.png') %>',
+  half      : false,
+  readOnly: true,
+  score: <%= @blog.star %>,
+  });
+  </script>
+
+おすすめポイント
+<p><%= @blog.body %></p>
+
+<%= link_to "編集", edit_blog_path(@blog.id) %>
+
+<%= link_to "商品を削除", blog_path(@blog.id), method: :delete %>
+
+    </div>
+  </div>
+</div>

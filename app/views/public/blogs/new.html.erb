@@ -8,13 +8,18 @@
       <h3>商品をおすすめする</h3>
       <div class='bg-warning rounded-pill p-1 mb-3'></div>
 
-      <p>買ってみて、使ってみて、良かった商品を教えてください！<p>
+      <p>買ってみて、使ってみて、良かった商品を教えてください。<p>
 
        <%= form_with model: @blog do |f| %>
 
         <div class="field">
-          <%= f.label :タイトル %><br />
+          <%= f.label :商品名 %><br />
           <%= f.text_field :title, autofocus: true, autocomplete: "title" %>
+        </div>
+
+        <div class="field">
+          <%= f.label :画像 %><br />
+          <%= f.file_field :image, accept: "image/*" %>
         </div>
 
         <div class="field">
@@ -32,6 +37,23 @@
           <%= f.text_field :link, autofocus: true, autocomplete: "link" %>
         </div>
 
+        <!--星レビュー機能-->
+        <div class="field" id="star">
+          <%= f.label :評価 %>
+          <%= f.hidden_field :star, id: :review_star %>
+　　    </div>
+        <script>
+　　　    $('#star').empty();
+          $('#star').raty({
+          size     : 36,
+          starOff:  '<%= asset_path('star-off.png') %>',
+          starOn : '<%= asset_path('star-on.png') %>',
+          starHalf: '<%= asset_path('star-half.png') %>',
+ 　 　    　scoreName: 'blog[star]',
+ 　 　    　half: true,
+          });
+        </script>
+        <!--ここまで-->
 
         <%= f.submit "投稿する", class: 'btn btn-success' %>
 
