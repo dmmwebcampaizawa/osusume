@@ -24,6 +24,15 @@
           <%= f.label :紹介文 %><br />
           <%= f.text_field :body, autofocus: true, autocomplete: "inputBody" %>
         </div>
+        
+        <div class="field">
+          <%= f.label :商品ジャンル %>
+          <%= f.select :genre, 
+          [["電化製品", "電化製品"], 
+          ["インテリア", "インテリア"], 
+          ["食器", "食器"],
+          ["食品", "食品"]], include_blank: "選択して下さい" %>
+        </div>
 
         <div class="field">
           <%= f.label :おすすめしたい人 %><br />

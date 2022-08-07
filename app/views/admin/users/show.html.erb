@@ -1,1 +1,49 @@
-<h1>会員詳細画面（admin）</h1>
+<div class="container">
+  <div class="row mt-4">
+    <div class='col-12 mt-4'>
+      <h3>会員詳細画面（admin）</h3>
+      <div class='bg-warning rounded-pill p-1'></div>
+      <p id="notice"><%= notice %></p>
+
+      <table class="mt- table table-borderless">
+        <tbody>
+          <thead>
+            <tr>
+              <th scope="col"></th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+            <tr>
+              <td>会員ID</td>
+              <td><%= @user.id %></td>
+            </tr>
+            <tr>
+              <td>ニックネーム</td>
+              <td><%= @user.name %></td>
+            </tr>
+            <tr>
+              <td>メールアドレス</td>
+              <td><%= @user.email %></td>
+            </tr>
+            <tr>
+              <td >会員ステータス</td>
+              <td>
+                <% if @user.is_deleted == false %>
+                  <div class="text-success font-weight-bold">有効</div>
+                <% else %>
+                  <div class="font-weight-bold">退会</div>
+                <% end %>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        
+        <div class="row mt-2">
+          <div class="col-md-3">
+            <%= link_to "編集する", edit_admin_user_path(@user.id), class: 'btn btn-success' %>
+          </div>
+        </div>
+
+    </div>
+  </div>
+</div>

@@ -11,11 +11,14 @@
   </head>
 
   <header>
-    <%= render 'layouts/public_header' %>
+      <% if request.fullpath.include? "admin"  %>
+        <%= render 'layouts/admin_header' %>
+      <% else%>
+         <%= render 'layouts/public_header' %>
+      <% end %>
   </header>
 
   <body>
-    
     <%= yield %>
   </body>
   

@@ -1,1 +1,44 @@
-<h1>会員一覧画面（admin）</h1>
+<div class="container">
+  <div class="row mt-4">
+    <div class='col-12 mt-4'>
+      <h3>会員一覧画面（admin）</h3>
+      <div class='bg-warning rounded-pill p-1'></div>
+      
+
+      <table class='table table-hover table-inverse'>
+        <thead>
+            <tr>
+              <th>会員ID</th>
+              <th>ニックネーム</th>
+              <th>メールアドレス</th>
+              <th>会員ステータス</th>
+              <th colspan="4"></th>
+            </tr>
+        </thead>
+        <% @user.each do |user| %>
+        <tbody>
+          <tr>
+            <td>
+              <%= user.id %>
+            </td>
+            <td>
+              <%= link_to admin_user_path(user.id) do %>
+              <%= user.name %>
+              <% end %>
+            </td>
+            <td><%= user.email %></td>
+            <td>
+              <% if user.is_deleted == false %>
+                <div class="text-success font-weight-bold">有効</div>
+              <% else %>
+                <div class="font-weight-bold">退会</div>
+              <% end %>
+            </td>
+          </tr>
+        </tbody>
+        <% end %>
+      </table>
+
+    </div>
+  </div>
+</div>
