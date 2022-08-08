@@ -2,12 +2,15 @@ class Admin::BlogsController < ApplicationController
 
   def index
     @blog = Blog.all
-    @blogs = Blog.where(user_id: self.id)
   end
 
   def show
+    @blog = Blog.find(params[:id])
   end
 
   def destroy
+    @blog = Blog.find(params[:id])
+    @blog.destroy
+    redirect_to admin_blogs_path, notice: "商品を削除しました。"
   end
 end

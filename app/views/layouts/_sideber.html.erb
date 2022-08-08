@@ -1,9 +1,24 @@
-<strong>ジャンル</strong></br>
-電化製品</br>
-インテリア</br>
-食器</br>
-食品</br>
-<br>
-<strong>検索ワードで探す</strong>
-<br>
-<strong>検索タグで探す</strong>
+<div>
+  <ul class="list-group list-unstyled">
+    <li class="list-group-item list-group-item-primary font-weight-bold">ジャンル</li>
+    <li>
+      <%= link_to "電化製品", electric_path, class: "list-group-item list-group-item-action" %>
+    </li>
+    <li>
+      <%= link_to "インテリア", interior_path, class: "list-group-item list-group-item-action" %>
+    </li>
+    <li>
+      <%= link_to "食器", tableware_path, class: "list-group-item list-group-item-action" %>
+    </li>
+    <li>
+      <%= link_to "食品", food_path, class: "list-group-item list-group-item-action" %>
+    </li>
+  </ul>
+</div>
+<!--<strong>検索ワードで探す</strong>-->
+<div>
+<h5>検索タグで探す</h5>
+<% tag_lists.each do |list| %>
+<%= link_to list.tagname, blogs_path(tag_id: list.id), class: 'tag_list' %>
+<% end %>
+</div>

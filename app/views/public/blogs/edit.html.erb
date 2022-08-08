@@ -1,14 +1,14 @@
 <div class="container">
   <div class="row mt-4">
-    <div class='mx-auto col- border-right'>
-      <%= render 'layouts/sideber' %>
+     <div class='col-2 mx-auto'>
+       <%= render 'layouts/sideber', tag_lists: @tag_lists %>
     </div>
 
-    <div class='ml-1 col-10 mt-4'>
+    <div class='ml-1 col-9 mt-4'>
       <h3>商品情報編集画面</h3>
       <div class='bg-warning rounded-pill p-1 mb-3'></div>
 
-       <%= form_with model: @blog do |f| %>
+       <%= form_with model:[@tag, @blog] do |f| %>
 
         <div class="field">
           <%= f.label :商品名 %><br />
@@ -24,12 +24,12 @@
           <%= f.label :紹介文 %><br />
           <%= f.text_field :body, autofocus: true, autocomplete: "inputBody" %>
         </div>
-        
+
         <div class="field">
           <%= f.label :商品ジャンル %>
-          <%= f.select :genre, 
-          [["電化製品", "電化製品"], 
-          ["インテリア", "インテリア"], 
+          <%= f.select :genre,
+          [["電化製品", "電化製品"],
+          ["インテリア", "インテリア"],
           ["食器", "食器"],
           ["食品", "食品"]], include_blank: "選択して下さい" %>
         </div>
@@ -59,7 +59,10 @@
               });
             </script>
           </div>
-        <!--ここまで-->
+        <!--タグ機能-->
+        <div class="field">
+        <%= f.text_field :tagname, autofocus: true, autocomplete: "inputTagname" %>
+        </div>
 
         <%= f.submit "変更する", class: 'btn btn-success' %>
 

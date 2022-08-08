@@ -1,12 +1,12 @@
 <div class="container">
   <div class="row mt-4">
-    <div class='mx-auto col- border-right'>
-      <%= render 'layouts/sideber' %>
+    <div class='mx-auto col-2'>
+       <%= render 'layouts/sideber', tag_lists: @tag_lists %>
     </div>
 
-    <div class='ml-1 col-10'>
+    <div class='ml-1 col-9'>
       <p id="notice"><%= notice %></p>
-      <h3>商品一覧</h3>
+      <h3><%= @tag.tagname %></h3>
       <div class='bg-warning rounded-pill p-1 mb-3'></div>
 
       <div class="container">
@@ -15,9 +15,9 @@
       <div class="col">
        <%= link_to blog_path(blog.id) do %>
          <% if blog.image.attached? %>
-           <%= image_tag blog.image, size: "250x250" %>
+           <%= image_tag blog.image, size: "220x220" %>
          <% else %>
-           <%= image_tag 'no_image', size: "250x250" %>
+           <%= image_tag 'no_image', size: "220x220" %>
          <% end %>
       <% end %>
       <p><%= blog.title %></p>
@@ -39,10 +39,9 @@
 
     </div>
     <% end %>
-
-
       </div>
       </div>
+      
 
     </div>
   </div>

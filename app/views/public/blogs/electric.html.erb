@@ -1,26 +1,26 @@
 <div class="container">
   <div class="row mt-4">
-    <div class='col-2 mx-auto'>
-    <%= render 'layouts/sideber', tag_lists: @tag_lists %>
+    <div class='mx-auto'>
+      <%= render 'layouts/sideber' %>
     </div>
 
-    <div class='ml-1 col-9'>
+    <div class='ml-1 col-10'>
       <p id="notice"><%= notice %></p>
-      <h3>おすすめ商品</h3>
+      <h3>電化製品</h3>
       <div class='bg-warning rounded-pill p-1 mb-3'></div>
-      <!--商品-->
+
       <div class="container">
         <div class="row">
-          <% @blogs.each do |blog| %>
+          <% @electric.each do |blog| %>
             <div class="col">
               <%= link_to blog_path(blog.id) do %>
                 <% if blog.image.attached? %>
-                <%= image_tag blog.image, size: "220x220" %>
+                  <%= image_tag blog.image, size: "250x250" %>
                 <% else %>
-                <%= image_tag 'no_image', size: "220x220" %>
+                  <%= image_tag 'no_image', size: "250x250" %>
                 <% end %>
               <% end %>
-              <p><%= blog.title %></p>
+              <p><strong><%= blog.title %></strong></p>
               <!--星レビュー-->
               <div id="star-rate<%= blog.id %>">
                 <script>
@@ -43,4 +43,3 @@
     </div>
   </div>
 </div>
-

@@ -1,16 +1,16 @@
 <div class="container">
   <div class="row mt-4">
-    <div class='mx-auto col- border-right'>
-      <%= render 'layouts/sideber' %>
+    <div class='mx-auto col-2'>
+      <%= render 'layouts/sideber', tag_lists: @tag_lists %>
     </div>
 
-    <div class='ml-1 col-10 mt-4'>
+    <div class='ml-1 col-9 mt-4'>
       <h3>商品をおすすめする</h3>
       <div class='bg-warning rounded-pill p-1 mb-3'></div>
 
       <p>買ってみて、使ってみて、良かった商品を教えてください。<p>
 
-       <%= form_with model: @blog do |f| %>
+      <%= form_with model:[@tag, @blog], method: :post, local: false do |f| %>
 
         <div class="field">
           <%= f.label :商品名 %><br />
@@ -26,12 +26,12 @@
           <%= f.label :紹介文 %><br />
           <%= f.text_field :body, autofocus: true, autocomplete: "body" %>
         </div>
-        
+
         <div class="field">
           <%= f.label :商品ジャンル %>
-          <%= f.select :genre, 
-          [["電化製品", "電化製品"], 
-          ["インテリア", "インテリア"], 
+          <%= f.select :genre,
+          [["電化製品", "電化製品"],
+          ["インテリア", "インテリア"],
           ["食器", "食器"],
           ["食品", "食品"]], include_blank: "選択して下さい" %>
         </div>
@@ -40,7 +40,7 @@
           <%= f.label :おすすめしたい人 %><br />
           <%= f.text_field :man, autofocus: true, autocomplete: "man" %>
         </div>
-        
+
         <div class="field">
           <%= f.label :商品が購入できるリンク%><br />
           <%= f.text_field :link, autofocus: true, autocomplete: "link" %>
@@ -50,19 +50,22 @@
         <div class="field" id="star">
           <%= f.label :評価 %>
           <%= f.hidden_field :star, id: :review_star %>
-　　    </div>
-        <script>
-　　　    $('#star').empty();
+          </div>
+          <script>
+          $('#star').empty();
           $('#star').raty({
           size     : 36,
           starOff:  '<%= asset_path('star-off.png') %>',
           starOn : '<%= asset_path('star-on.png') %>',
           starHalf: '<%= asset_path('star-half.png') %>',
- 　 　    　scoreName: 'blog[star]',
- 　 　    　half: true,
+          scoreName: 'blog[star]',
+          half: true,
           });
         </script>
-        <!--ここまで-->
+        <!--タグ機能-->
+        <div class="field">
+        <%= f.text_field :tagname, placeholder: "プログラミング技術や募集要項に関するタグをスペース区切りで5つまで入力(例 Ruby Rails )", class: 'uk-input uk-form-small' %>
+        </div>
 
         <%= f.submit "投稿する", class: 'btn btn-success' %>
 

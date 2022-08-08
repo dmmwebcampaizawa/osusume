@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   devise_for :admin, controllers: {
     sessions: "admin/sessions"
   }
-  
+
   # ゲストログイン
   devise_scope :user do
     post 'users/guest_sign_in', to: 'users/sessions#new_guest'
@@ -23,10 +23,14 @@ Rails.application.routes.draw do
     get 'users/my_page' => 'users#show', as: 'my_page'
     get '/users/unsubscribe' => 'users#unsubscribe', as: 'unsubscribe'
     patch '/users/withdraw' => 'users#withdraw', as: 'withdraw'
-    resources :users, only: [:show, :edit, :update]
+    get 'blogs/electric' => 'blogs#electric', as: 'electric'
+    get 'blogs/interior' => 'blogs#interior', as: 'interior'
+    get 'blogs/tableware' => 'blogs#tableware', as: 'tableware'
+    get 'blogs/food' => 'blogs#food', as: 'food'
     resources :blogs do
       resources :comments, only: [:create, :destroy]
     end
+    resources :users, only: [:show, :edit, :update]
     get '/search', to: 'searches#search'
   end
 
