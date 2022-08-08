@@ -1,10 +1,10 @@
 <div class="container">
   <div class="row mt-4">
-    <div class='mx-auto'>
-      <%= render 'layouts/sideber' %>
+    <div class='mx-auto col-2'>
+      <%= render 'layouts/sideber', tag_lists: @tag_lists %>
     </div>
 
-    <div class='ml-1 col-10'>
+    <div class='ml-1 col-9'>
       <p id="notice"><%= notice %></p>
       <h3>インテリア</h3>
       <div class='bg-warning rounded-pill p-1 mb-3'></div>

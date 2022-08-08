@@ -24,7 +24,7 @@
 
         <div class="field">
           <%= f.label :紹介文 %><br />
-          <%= f.text_field :body, autofocus: true, autocomplete: "body" %>
+          <%= f.text_area :body, autofocus: true, autocomplete: "body" %>
         </div>
 
         <div class="field">
@@ -64,7 +64,7 @@
         </script>
         <!--タグ機能-->
         <div class="field">
-        <%= f.text_field :tagname, placeholder: "プログラミング技術や募集要項に関するタグをスペース区切りで5つまで入力(例 Ruby Rails )", class: 'uk-input uk-form-small' %>
+        <%= f.text_area :tag_ids, id:'tag_ids', placeholder: "タグをつける。複数つける場合は','で区切ってください。", class: 'uk-input uk-form-small' %>
         </div>
 
         <%= f.submit "投稿する", class: 'btn btn-success' %>

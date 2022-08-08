@@ -1,7 +1,7 @@
 <div>
-  <ul class="list-group list-unstyled">
-    <li class="list-group-item list-group-item-primary font-weight-bold">ジャンル</li>
-    <li>
+  <div class="font-weight-bold mb-1">ジャンルから探す</div>
+    <ul class="list-group list-unstyled">
+    <li>  
       <%= link_to "電化製品", electric_path, class: "list-group-item list-group-item-action" %>
     </li>
     <li>
@@ -16,9 +16,9 @@
   </ul>
 </div>
 <!--<strong>検索ワードで探す</strong>-->
-<div>
-<h5>検索タグで探す</h5>
-<% tag_lists.each do |list| %>
-<%= link_to list.tagname, blogs_path(tag_id: list.id), class: 'tag_list' %>
-<% end %>
+<div class="mt-3">
+  <div class="font-weight-bold">検索タグで探す</div>
+  <% tag_lists.each do |list| %>
+  <%= link_to list.tagname, blogs_path(tag_id: list.id), class: 'btn btn-outline-info my-1' %>
+  <% end %>
 </div>

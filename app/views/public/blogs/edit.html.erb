@@ -61,7 +61,7 @@
           </div>
         <!--タグ機能-->
         <div class="field">
-        <%= f.text_field :tagname, autofocus: true, autocomplete: "inputTagname" %>
+        <%= f.text_field :tag_ids, value: @tag_list, placeholder: "タグをつける。複数つける場合は','で区切ってください。" %>
         </div>
 
         <%= f.submit "変更する", class: 'btn btn-success' %>
