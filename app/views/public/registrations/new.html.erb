@@ -3,37 +3,39 @@
     <div class='mx-auto col-12'>
 
       <h3 class='mt-4'>新規会員登録</h3>
-      <div class='bg-warning rounded-pill p-1 mb-3'></div>
+      <div class='bg-warning rounded-pill p-1 mb-5'></div>
 
       <%= form_with model: @user, url: registration_path(resource_name) do |f| %>
         <%= render "public/shared/error_messages", resource: resource %>
 
-        <div class="field">
-          <%= f.label :ニックネーム %><br />
-          <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
+        <div class="form-row">
+          <%= f.label :ニックネーム, class: 'col-3 col-form-label font-weight-bold' %>
+          <%= f.text_field :name, autofocus: true, autocomplete: "name" , class: 'col-6' %>
         </div>
 
-        <div class="field">
-          <%= f.label :メールアドレス %><br />
-          <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+        <div class="form-row mt-3">
+          <%= f.label :メールアドレス, class: 'col-3 col-form-label font-weight-bold' %>
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'col-6' %>
         </div>
 
-        <div class="field">
-          <%= f.label :パスワード（6文字以上） %><br />
-          <%= f.password_field :password, autocomplete: "new-password" %>
+        <div class="form-row mt-3">
+          <%= f.label :パスワード（6文字以上）, class: 'col-3 col-form-label font-weight-bold' %>
+          <%= f.password_field :password, autocomplete: "new-password", class: 'col-6' %>
         </div>
 
-        <div class="field">
-          <%= f.label :パスワード（確認用） %><br />
-          <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+        <div class="form-row mt-3">
+          <%= f.label :パスワード（確認用）, class: 'col-3 col-form-label font-weight-bold' %>
+          <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'col-6' %>
         </div>
 
-        <div class="actions">
-          <%= f.submit "新規会員登録" %>
+        <div class="text-center mt-3">
+          <%= f.submit "新規会員登録", class: 'btn btn-info' %>
         </div>
       <% end %>
-
-      <%= render "public/shared/links" %>
+      
+      <div class="mt-5 h5">
+        既に会員登録されている方は<%= link_to "こちら", new_user_session_path %> からログインしてください。
+      </div>
 
     </div>
   </div>

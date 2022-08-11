@@ -5,53 +5,54 @@
     </div>
 
     <div class='ml-1 col-9 mt-4'>
-      <h3>商品をおすすめする</h3>
+      <h3>商品をすすめる</h3>
       <div class='bg-warning rounded-pill p-1 mb-3'></div>
 
       <p>買ってみて、使ってみて、良かった商品を教えてください。<p>
 
-      <%= form_with model:[@tag, @blog], method: :post, local: false do |f| %>
+      <%= form_with model: @blog, local: false do |f| %>
 
-        <div class="field">
-          <%= f.label :商品名 %><br />
-          <%= f.text_field :title, autofocus: true, autocomplete: "title" %>
-        </div>
+      <div class="form-row">
+          <%= f.label :商品名, class: 'col-3 col-form-label font-weight-bold' %>
+          <%= f.text_field :title, autofocus: true, autocomplete: "title", class: 'col' %>
+      </div>
 
-        <div class="field">
-          <%= f.label :画像 %><br />
-          <%= f.file_field :image, accept: "image/*" %>
-        </div>
+      <div class="form-row mt-3">
+        <%= f.label :画像, class: 'col-3 col-form-label font-weight-bold' %>
+        <%= f.file_field :image, accept: "image/*", class: 'col' %>
+      </div>
 
-        <div class="field">
-          <%= f.label :紹介文 %><br />
-          <%= f.text_area :body, autofocus: true, autocomplete: "body" %>
-        </div>
+      <div class="form-row mt-3">
+        <%= f.label :紹介文, class: 'col-3 col-form-label font-weight-bold' %><br />
+        <%= f.text_area :body, rows: '5', autofocus: true, autocomplete: "body", class: 'col' %>
+      </div>
 
-        <div class="field">
-          <%= f.label :商品ジャンル %>
-          <%= f.select :genre,
-          [["電化製品", "電化製品"],
+      <div class="form-row mt-3">
+        <%= f.label :商品ジャンル, class: 'col-3 col-form-label font-weight-bold' %>
+        <%= f.select :genre,
+        [["電化製品", "電化製品"],
           ["インテリア", "インテリア"],
           ["食器", "食器"],
-          ["食品", "食品"]], include_blank: "選択して下さい" %>
-        </div>
+          ["食品", "食品"]], include_blank: "選択して下さい", class: 'col' %>
+      </div>
 
-        <div class="field">
-          <%= f.label :おすすめしたい人 %><br />
-          <%= f.text_field :man, autofocus: true, autocomplete: "man" %>
-        </div>
+      <div class="form-row mt-3">
+        <%= f.label :おすすめしたい人, class: 'col-3 col-form-label font-weight-bold' %><br />
+        <%= f.text_field :man, autofocus: true, autocomplete: "man", class: 'col' %>
+      </div>
 
-        <div class="field">
-          <%= f.label :商品が購入できるリンク%><br />
-          <%= f.text_field :link, autofocus: true, autocomplete: "link" %>
-        </div>
+      <div class="form-row mt-3">
+        <%= f.label :商品が購入できるリンク, class: 'col-3 col-form-label font-weight-bold' %><br />
+        <%= f.text_field :link, autofocus: true, autocomplete: "link", class: 'col' %>
+      </div>
 
-        <!--星レビュー機能-->
-        <div class="field" id="star">
-          <%= f.label :評価 %>
-          <%= f.hidden_field :star, id: :review_star %>
-          </div>
-          <script>
+      <!--星レビュー機能-->
+      <div class="form-row mt-3">
+        <%= f.label :おすすめ度, class: 'col-3 col-form-label font-weight-bold' %>
+        <div id="star">
+        <%= f.hidden_field :star, id: :review_star, class: 'col' %>
+        </div>
+        <script>
           $('#star').empty();
           $('#star').raty({
           size     : 36,
@@ -62,13 +63,16 @@
           half: true,
           });
         </script>
-        <!--タグ機能-->
-        <div class="field">
-        <%= f.text_area :tag_ids, id:'tag_ids', placeholder: "タグをつける。複数つける場合は','で区切ってください。", class: 'uk-input uk-form-small' %>
-        </div>
+      </div>
 
-        <%= f.submit "投稿する", class: 'btn btn-success' %>
-
+      <!--タグ機能-->
+      <div class="form-row mt-3">
+        <%= f.label :タグ, class: 'col-3 col-form-label font-weight-bold' %>
+        <%= f.text_field :tag_ids, id: :tag_ids, autofocus: true, placeholder: "タグをつける。複数つける場合は','で区切ってください", class: 'col' %>
+      </div>
+      <div class="text-right mt-3">
+        <%= f.submit "投稿する", class: 'btn btn-info' %>
+      </div>
       <% end %>
 
 

@@ -1,0 +1,36 @@
+<div class="container">
+  <div class="row">
+    <div class='ml-1 col mt-4'>
+      <h3>タグ一覧</h3>
+      <div class='bg-warning rounded-pill p-1 mb-3'></div>
+      
+       <table class='table table-hover table-inverse'>
+        <thead>
+            <tr>
+              <th>タグ</th>
+              <th></th>
+              <th colspan="2"></th>
+            </tr>
+        </thead>
+        <% @tag_lists.each do |list| %>
+        <tbody>
+          <tr>
+            <td>
+              <%= list.tagname %>
+            </td>
+            <td>
+              <%= link_to '削除', tag_path(list.id), confirm: 'Are you sure?', method: :delete %>
+            </td>
+          </tr>
+        </tbody>
+        <% end %>
+      </table>
+      
+
+
+
+
+
+    </div>
+  </div>
+</div>

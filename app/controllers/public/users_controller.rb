@@ -1,10 +1,13 @@
 class Public::UsersController < ApplicationController
+ 
   def show
     @user = User.find(current_user.id)
+    @tag_lists = Tag.all
   end
 
   def edit
     @user = User.find(current_user.id)
+    @tag_lists = Tag.all
   end
 
   def update
@@ -18,6 +21,7 @@ class Public::UsersController < ApplicationController
 
   def unsubscribe
     @user = current_user
+    @tag_lists = Tag.all
   end
 
   def withdraw

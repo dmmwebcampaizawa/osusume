@@ -1,44 +1,71 @@
 <div class="container">
-  <div class="row mt-4">
-    <div class='mx-auto col- border-right'>
-      <%= render 'layouts/sideber' %>
-    </div>
-
-    <div class='ml-1 col-10 mt-4'>
+  <div class="row">
+    <div class='ml-1 col mt-4'>
       <h3><%= @blog.title %></h3>
       <div class='bg-warning rounded-pill p-1 mb-3'></div>
 
-<% if @blog.image.attached? %>
-  <%= image_tag @blog.image, size: "300x300" %>
-<% else %>
-  <%= image_tag 'no_image', size: "300x300" %>
-<% end %>
-
-<h5>商品ジャンル</h5>
-<p><%= @blog.genre %></p>
-
-<h5>おすすめしたい人</h5>
-<p><%= @blog.man %></p>
-
-おすすめ度
-<div id="star-rate<%= @blog.id%>"></div>
-  <script>
-  $('#star-rate<%= @blog.id %>').empty();
-  $('#star-rate<%= @blog.id%>').raty({
-  size      : 36,
-  starOff   : '<%= asset_path('star-off.png') %>',
-  starOn    : '<%= asset_path('star-on.png') %>',
-  starHalf  : '<%= asset_path('star-half.png') %>',
-  half      : false,
-  readOnly: true,
-  score: <%= @blog.star %>,
-  });
-  </script>
-
-おすすめポイント
-<p><%= @blog.body %></p>
-
-<%= link_to "商品を削除", admin_blog_path(@blog.id), method: :delete %>
+      <div class="row mt-5">
+        
+        <div class="col-4 ml-5">
+          <% if @blog.image.attached? %>
+          <%= image_tag @blog.image, size: "300x300" %>
+          <% else %>
+          <%= image_tag 'no_image', size: "300x300" %>
+          <% end %>
+        </div>
+        
+        <div class="col">
+          <div class="row">
+            <div class="col-3 font-weight-bold">商品ジャンル</div>
+            <div class="col"><%= @blog.genre %></div>
+          </div>
+          <div class="row mt-3">
+            <div class="col-3 font-weight-bold">おすすめしたい人</div>
+            <div class="col"><%= @blog.man %></div>
+          </div>
+          <div class="row mt-3">
+            <div class="col-3 font-weight-bold">おすすめ度</div>
+            <div class="col">
+              <div id="star-rate<%= @blog.id%>"></div>
+              <script>
+              $('#star-rate<%= @blog.id %>').empty();
+              $('#star-rate<%= @blog.id%>').raty({
+              size      : 36,
+              starOff   : '<%= asset_path('star-off.png') %>',
+              starOn    : '<%= asset_path('star-on.png') %>',
+              starHalf  : '<%= asset_path('star-half.png') %>',
+              half      : false,
+              readOnly: true,
+              score: <%= @blog.star %>,
+              });
+              </script>
+            </div>
+          </div>
+          <div class="row mt-3">
+            <div class="col-3 font-weight-bold">おすすめポイント</div>
+            <div class="col"><%= @blog.body %></div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col">
+        <% @blog.comments.each do |comment| %>
+        <div class="list-group-item flex-column align-items-start mt-2">
+          <p class="mb-1"><%= comment.comment %></p>
+          <div class="text-right">
+            <p>
+            <%= link_to comment.user.name, admin_user_path(comment.user.id), class: 'text-info font-weight-bold' %>|
+            <%= comment.created_at.strftime('%Y/%m/%d') %>|
+            <%= link_to '削除', blog_comment_path(@blog.id, comment.id), confirm: 'Are you sure?', method: :delete, class: 'text-dark' %>
+            </p>
+          </div>
+        </div>
+        <% end %>
+      </div>
+      
+      <div class="text-center mt-3">
+        <%= link_to "商品を削除", admin_blog_path(@blog.id), method: :delete, class: 'btn btn-info' %>
+      </div>
 
     </div>
   </div>

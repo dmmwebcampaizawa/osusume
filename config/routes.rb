@@ -20,21 +20,22 @@ Rails.application.routes.draw do
 
   scope module: :public do
     root :to =>"homes#top"
-    get 'users/my_page' => 'users#show', as: 'my_page'
     get '/users/unsubscribe' => 'users#unsubscribe', as: 'unsubscribe'
     patch '/users/withdraw' => 'users#withdraw', as: 'withdraw'
     get 'blogs/electric' => 'blogs#electric', as: 'electric'
     get 'blogs/interior' => 'blogs#interior', as: 'interior'
     get 'blogs/tableware' => 'blogs#tableware', as: 'tableware'
     get 'blogs/food' => 'blogs#food', as: 'food'
+    delete 'tags/:id' => 'tags#destroy', as: 'tag'
     resources :blogs do
       resources :comments, only: [:create, :destroy]
     end
-    resources :users, only: [:show, :edit, :update]
+    resources :users, only: [:show, :edit, :update, :index]
     get '/search', to: 'searches#search'
   end
 
   namespace :admin do
+    get '/blogs/tag' => 'blogs#tag', as: 'tag'
     resources :users, only: [:index, :show, :edit, :update]
     resources :blogs, only: [:index, :show, :destroy]
   end

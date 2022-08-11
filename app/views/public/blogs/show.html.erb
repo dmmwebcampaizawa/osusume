@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row mt-4">
-     <div class='mx-auto col-2'>
+    <div class='mx-auto col-2'>
       <%= render 'layouts/sideber', tag_lists: @tag_lists %>
     </div>
 
@@ -56,45 +56,48 @@
                 </tr>
             </tbody>
           </table>
-          <div class="mt-3 font-weight-bold">おすすめポイント</div>
+        <div class="mt-3 font-weight-bold">おすすめポイント</div>
           <div><%= @blog.body %></div>
+      </div>
+    </div>
+
+    <div class='mt-3'>
+      <% @blog.tags.each do |list| %>
+      <%= link_to list.tagname, blogs_path(tag_id: list.id), class: 'btn btn-outline-info mx-2' %>
+      <% end %>
+    </div>
+
+    <div class="mt-3 text-right">コメント件数：<%= @blog.comments.count %></div>
+
+    <% @blog.comments.each do |comment| %>
+      <div class="list-group-item flex-column align-items-start mt-2">
+        <p class="mb-1"><%= comment.comment %></p>
+        <div class="text-right">
+          <p>
+            <%= link_to comment.user.name, user_path(comment.user.id), class: 'text-info font-weight-bold' %>|
+            <%= comment.created_at.strftime('%Y/%m/%d') %>|
+            <% if comment.user == current_user %>
+            <%= link_to '削除', blog_comment_path(@blog.id, comment.id), confirm: 'Are you sure?', method: :delete, class: 'text-dark' %>
+            <% end %>
+          </p>
         </div>
       </div>
+    <% end %>
 
-      <div class='mt-3'>
-        <% @blog.tags.each do |list| %>
-        <%= link_to list.tagname, blogs_path(tag_id: list.id), class: 'btn btn-outline-info mx-2' %>
-        <% end %>
+    <% if user_signed_in? && current_user.id == @blog.user_id %>
+    <div class='row-9 form-group mt-3'>
+      <%= form_with model:[@blog, @comment], method: :post, local: false do |f| %>
+      <%= f.text_area :comment, rows: '5', placeholder: "コメントを書いてください。", class: "form-control" %>
+      <div class='text-right mt-2'>
+        <%= f.submit "コメントを送信",class: "btn btn-warning" %>
       </div>
-
-      <div>
-        <div class="mt-3 text-right">コメント件数：<%= @blog.comments.count %></div>
-        <div>
-          <% @blog.comments.each do |comment| %>
-          <div class="list-group-item flex-column align-items-start mt-2">
-            <p class="mb-1"><%= comment.comment %></p>
-            <div class="text-right">
-              <p>
-                <%= comment.user.name %>|
-                <%= comment.created_at.strftime('%Y/%m/%d') %>|
-                <% if comment.user == current_user %>
-                <%= link_to '削除', blog_comment_path(@blog.id, comment.id), confirm: 'Are you sure?', method: :delete %>
-                <% end %>
-              </p>
-            </div>
-          </div>
-          <% end %>
-      <div class='row form-group'>
-        <%= form_with model:[@blog, @comment], method: :post, local: false do |f| %>
-        <%= f.text_area :comment, rows: '5', placeholder: "コメントを書いてください。", class: "w-100 comment-textarea" %>
-        <%= f.submit "送信する",class: "btn btn-lg btn-base-1 mt-20 pull-right" %>
-        <% end %>
+      <% end %>
+    </div>
+      <div class='row mt-2'>
+        <p class='mr-2'><%= link_to "商品を編集", edit_blog_path(@blog.id), class: "btn btn-info" %></p>
+        <p><%= link_to "商品を削除", blog_path(@blog.id), method: :delete, class: "btn btn-danger" %></p>
       </div>
-
-      <div class='row'>
-        <%= link_to "編集", edit_blog_path(@blog.id) %>
-        <%= link_to "商品を削除", blog_path(@blog.id), method: :delete %>
-      </div>
+    <% end %>
     </div>
   </div>
 </div>

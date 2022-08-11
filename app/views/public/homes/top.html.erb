@@ -10,17 +10,17 @@
       <div class='bg-warning rounded-pill p-1 mb-3'></div>
       <!--商品-->
       <div class="container">
-        <div class="row">
+        <div class="row-container">
           <% @blogs.each do |blog| %>
-            <div class="col">
-              <%= link_to blog_path(blog.id) do %>
+            <div class="blog-box">
+              <%= link_to blog_path(blog.id), class: 'stretched-link text-dark font-weight-bold' do %>
                 <% if blog.image.attached? %>
                 <%= image_tag blog.image, size: "220x220" %>
                 <% else %>
                 <%= image_tag 'no_image', size: "220x220" %>
                 <% end %>
+                <p><%= blog.title %></p>
               <% end %>
-              <p><%= blog.title %></p>
               <!--星レビュー-->
               <div id="star-rate<%= blog.id %>">
                 <script>

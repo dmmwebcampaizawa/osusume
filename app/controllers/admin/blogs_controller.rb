@@ -8,6 +8,10 @@ class Admin::BlogsController < ApplicationController
     @blog = Blog.find(params[:id])
   end
 
+  def tag
+    @tag_lists = Tag.all
+  end
+
   def destroy
     @blog = Blog.find(params[:id])
     @blog.destroy

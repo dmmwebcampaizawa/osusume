@@ -8,8 +8,10 @@ class Public::BlogsController < ApplicationController
   def show
     @blog = Blog.find(params[:id])
     @blog = Blog.find_by(id: params[:id])
-    @comment = current_user.comments.new
     @tag_lists = Tag.all
+    if user_signed_in? && current_user.id == @blog.user_id
+      @comment = current_user.comments.new
+    end
   end
 
   def create
@@ -56,7 +58,7 @@ class Public::BlogsController < ApplicationController
     if @blog.user == current_user
       @blog.destroy
     redirect_to root_path, notice: "商品を削除しました。"
-    else 
+    else
      redirect_to root_path
     end
   end
@@ -99,6 +101,6 @@ class Public::BlogsController < ApplicationController
   private
 
   def blog_params
-      params.require(:blog).permit(:title, :body, :image, :man, :link, :star, :genre)
+      params.require(:blog).permit(:title, :body, :image, :man, :link, :star, :genre, :tagname)
   end
 end

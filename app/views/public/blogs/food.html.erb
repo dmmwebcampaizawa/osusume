@@ -10,9 +10,9 @@
       <div class='bg-warning rounded-pill p-1 mb-3'></div>
 
       <div class="container">
-        <div class="row">
+        <div class="row-container">
           <% @food.each do |blog| %>
-            <div class="col">
+            <div class="blog-box">
               <%= link_to blog_path(blog.id) do %>
                 <% if blog.image.attached? %>
                   <%= image_tag blog.image, size: "250x250" %>

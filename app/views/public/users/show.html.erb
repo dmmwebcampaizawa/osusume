@@ -1,41 +1,53 @@
 <div class="container">
   <div class="row mt-4">
-    <div class='mx-auto'>
-      <%= render 'layouts/sideber' %>
+    <div class='mx-auto col-2'>
+      <%= render 'layouts/sideber', tag_lists: @tag_lists %>
     </div>
 
-    <div class='ml-1 col-10 mt-4'>
+    <div class='ml-1 col-9'>
         <p id="notice"><%= notice %></p>
         <h3>マイページ</h3>
         <div class='bg-warning rounded-pill p-1 mb-3'></div>
 
-      <h4><%= current_user.name %></h4>
-      <p><%= current_user.email %></p>
+        <div class='row ml-2'>
+            <div class='col-3'>
+                <p class="font-weight-bold">ニックネーム</p>
+            </div>
+            <div class='col-4'>
+                <p><%= current_user.name %></p>
+            </div>
+        </div>
+        <div class='row ml-2'>
+            <div class='col-3'>
+                <p class="font-weight-bold">メールアドレス</p>
+            </div>
+            <div class='col-4'>
+                <p><%= current_user.email %></p>
+            </div>
+        </div>
 
-      <%= link_to "登録情報を変更する", edit_user_path(current_user.id), class: 'btn btn-primary' %>
+        <div class="mt-2">
+            <%= link_to "登録情報を変更する", edit_user_path(current_user.id), class: 'btn btn-info' %>
+        </div>
 
-      <h3 class='mt-4'>おすすめした商品</h3>
-      <div class='bg-warning rounded-pill p-1 mb-3'></div>
-      
-      <div class="container">
-      <div class="row">
-      <% @user.blogs.each do |blog| %>
-      <div class="col">
-       <%= link_to blog_path(blog.id) do %>
-         <% if blog.image.attached? %>
-           <%= image_tag blog.image, size: "250x250" %>
-         <% else %>
-           <%= image_tag 'no_image', size: "250x250" %>
-         <% end %>
-      <% end %>
-      <p><%= blog.title %></p>
-      </div>
-      <% end %>
-      </div>
-      </div>
+        <h3 class='mt-4'>おすすめした商品</h3>
+        <div class='bg-warning rounded-pill p-1 mb-3'></div>
 
-       <%= link_to "TOPページ", '/', class: 'btn btn-primary' %>
-<!--ここまで-->
+        <div class="container">
+        <div class="row-container">
+            <% @user.blogs.order(created_at: :desc).each do |blog| %>
+            <div class="blog-box">
+                <%= link_to blog_path(blog.id), class: 'stretched-link text-dark font-weight-bold' do %>
+                    <% if blog.image.attached? %>
+                    <%= image_tag blog.image, size: "220x220" %>
+                    <% else %>
+                    <%= image_tag 'no_image', size: "220x220" %>
+                    <% end %>
+                    <p><%= blog.title %><p>
+                <% end %>
+            </div>
+            <% end %>
+        </div>
     </div>
 
   </div>
