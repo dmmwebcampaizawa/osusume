@@ -5,12 +5,23 @@
     </div>
 
     <div class='ml-1 col-9 mt-4'>
+      <div class="text-danger">
+        <% if @blog.errors.any? %>
+        <%= @blog.errors.count %>件のエラーが発生しました
+        <ul>
+          <% @blog.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+          <% end %>
+        </ul>
+        <% end %>
+      </div>
+
       <h3>商品をすすめる</h3>
       <div class='bg-warning rounded-pill p-1 mb-3'></div>
 
       <p>買ってみて、使ってみて、良かった商品を教えてください。<p>
 
-      <%= form_with model: @blog, local: false do |f| %>
+      <%= form_with model: @blog, local: true do |f| %>
 
       <div class="form-row">
           <%= f.label :商品名, class: 'col-3 col-form-label font-weight-bold' %>
@@ -43,7 +54,7 @@
 
       <div class="form-row mt-3">
         <%= f.label :商品が購入できるリンク, class: 'col-3 col-form-label font-weight-bold' %><br />
-        <%= f.text_field :link, autofocus: true, autocomplete: "link", class: 'col' %>
+        <%= f.text_field :link, autofocus: true, autocomplete: "link", class: 'col', placeholder: "https://〜リンクを入力してください。" %>
       </div>
 
       <!--星レビュー機能-->

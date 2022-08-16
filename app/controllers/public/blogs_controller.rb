@@ -9,6 +9,7 @@ class Public::BlogsController < ApplicationController
     @blog = Blog.find(params[:id])
     @blog = Blog.find_by(id: params[:id])
     @tag_lists = Tag.all
+    @user = @blog.user
     if user_signed_in? && current_user.id == @blog.user_id
       @comment = current_user.comments.new
     end
@@ -18,18 +19,20 @@ class Public::BlogsController < ApplicationController
     @blog = Blog.new(blog_params)
     @blog.user_id = current_user.id
     tag_list = params[:blog][:tag_ids].split(',')
-    @blog.save
+    if @blog.save
     @blog.save_tags(tag_list)
     redirect_to blog_path(@blog.id)
+    else
+    @tag_lists = Tag.all
+    render :new
+    
+    end
   end
 
    def index
-    if params[:tag_id].present?
+    params[:tag_id].present?
       @tag = Tag.find(params[:tag_id])
       @blogs = @tag.blogs.order(created_at: :desc)
-    else
-      @blogs = Blog.all.order(created_at: :desc)
-    end
     @tag_lists = Tag.all
    end
 
@@ -57,15 +60,14 @@ class Public::BlogsController < ApplicationController
     @blog = Blog.find(params[:id])
     if @blog.user == current_user
       @blog.destroy
-    redirect_to root_path, notice: "商品を削除しました。"
+    redirect_to top_path, notice: "商品を削除しました。"
     else
-     redirect_to root_path
+     redirect_to top_path
     end
   end
 
   def electric
-    @blog = Blog.all.order(created_at: :desc)
-    @electric = Blog.where(genre:"電化製品")
+    @electric = Blog.where(genre:"電化製品").order(created_at: :desc)
     @tag_lists = Tag.all
   end
 

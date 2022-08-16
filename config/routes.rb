@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   end
 
   scope module: :public do
-    root :to =>"homes#top"
+    root :to =>"homes#top", as: 'top'
     get '/users/unsubscribe' => 'users#unsubscribe', as: 'unsubscribe'
     patch '/users/withdraw' => 'users#withdraw', as: 'withdraw'
     get 'blogs/electric' => 'blogs#electric', as: 'electric'

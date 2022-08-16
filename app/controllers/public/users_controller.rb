@@ -1,5 +1,5 @@
 class Public::UsersController < ApplicationController
- 
+
   def show
     @user = User.find(current_user.id)
     @tag_lists = Tag.all
@@ -13,7 +13,7 @@ class Public::UsersController < ApplicationController
   def update
     @user = User.find(current_user.id)
     if @user.update(user_params)
-      redirect_to my_page_path
+      redirect_to user_path(current_user.id)
     else
       render :edit
     end
@@ -35,7 +35,7 @@ class Public::UsersController < ApplicationController
    private
 
   def user_params
-    params.require(:user).permit(:email, :name, :is_deleted)
+    params.require(:user).permit(:email, :name, :is_deleted, :profile_image, :introduction)
   end
 
 end

@@ -13,14 +13,14 @@
         <div class="row-container">
           <% @interior.each do |blog| %>
             <div class="blog-box">
-              <%= link_to blog_path(blog.id) do %>
+              <%= link_to blog_path(blog.id), class: 'text-dark font-weight-bold' do %>
                 <% if blog.image.attached? %>
                   <%= image_tag blog.image, size: "250x250" %>
                 <% else %>
                   <%= image_tag 'no_image', size: "250x250" %>
                 <% end %>
+                <p><%= blog.title %></p>
               <% end %>
-              <p><strong><%= blog.title %></strong></p>
               <!--星レビュー-->
               <div id="star-rate<%= blog.id %>">
                 <script>

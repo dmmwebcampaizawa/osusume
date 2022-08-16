@@ -4,26 +4,39 @@
       <%= render 'layouts/sideber', tag_lists: @tag_lists %>
     </div>
 
-    <div class='ml-1 col-9'>
+    <div class='ml-1 col-9 mt-4'>
       <h3>会員情報変更</h3>
       <div class='bg-warning rounded-pill p-1 mb-3'></div>
 
-       <%= form_with model: @user do |f| %>
+      <%= form_with model: @user do |f| %>
 
-        <div class="field">
-          <%= f.label :ニックネーム %><br />
-          <%= f.text_field :name, autofocus: true, autocomplete: "inputName" %>
-        </div>
+      <div class="form-row">
+        <%= f.label :ニックネーム, class: 'col-3 col-form-label font-weight-bold' %><br />
+        <%= f.text_field :name, autofocus: true, autocomplete: "inputName", class: 'col' %>
+      </div>
 
-        <div class="field">
-          <%= f.label :メールアドレス %><br />
-          <%= f.email_field :email, autofocus: true, autocomplete: "inputEmail" %>
-        </div>
+      <div class="form-row mt-3">
+        <%= f.label :画像, class: 'col-3 col-form-label font-weight-bold' %><br />
+        <%= f.file_field :profile_image, accept: "image/*", class: 'col' %>
+      </div>
 
-        <%= f.submit "内容を保存", class: 'btn btn-success' %>
+      <div class="form-row mt-3">
+        <%= f.label :メールアドレス, class: 'col-3 col-form-label font-weight-bold' %><br />
+        <%= f.email_field :email, autofocus: true, autocomplete: "inputEmail", class: 'col' %>
+      </div>
+      
+      <div class="form-row mt-3">
+        <%= f.label :紹介文, class: 'col-3 col-form-label font-weight-bold' %><br />
+        <%= f.text_area :introduction, autofocus: true, autocomplete: "inputintroduction", class: 'col' %>
+      </div>
 
-        <%= link_to "退会する", unsubscribe_path, class: 'btn btn-danger' %>
+      <div class="text-right mt-3 mb-5">
+        <%= f.submit "内容を保存", class: 'btn btn-info' %>
+      </div>
       <% end %>
+
+      <p>退会される場合は<%= link_to "こちら", unsubscribe_path %>からお手続きください。</p>
+
 
 
     </div>
