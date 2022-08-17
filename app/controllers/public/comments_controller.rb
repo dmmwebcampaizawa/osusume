@@ -6,14 +6,14 @@ class Public::CommentsController < ApplicationController
     @comment.user_id = current_user.id
     @comment.blog_id = @blog.id
     @comment.save
-    redirect_back(fallback_location: root_path)
+    redirect_to blog_path(@blog.id)
   end
 
   def destroy
     @blog = Blog.find(params[:blog_id])
     comment = Comment.find(params[:id])
     comment.destroy
-    redirect_back(fallback_location: root_path)
+    redirect_to blog_path(@blog.id)
   end
 
   private

@@ -10,7 +10,7 @@ class Public::BlogsController < ApplicationController
     @blog = Blog.find_by(id: params[:id])
     @tag_lists = Tag.all
     @user = @blog.user
-    if user_signed_in? && current_user.id == @blog.user_id
+    if user_signed_in?
       @comment = current_user.comments.new
     end
   end
@@ -25,7 +25,7 @@ class Public::BlogsController < ApplicationController
     else
     @tag_lists = Tag.all
     render :new
-    
+
     end
   end
 

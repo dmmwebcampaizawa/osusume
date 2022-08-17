@@ -68,7 +68,7 @@
       <%= link_to list.tagname, blogs_path(tag_id: list.id), class: 'btn btn-outline-info mx-2' %>
       <% end %>
     </div>
-    
+
 
     <!--商品をおすすめしたユーザー-->
     <div class='mt-4 mb-3 h5 font-weight-bold'>この商品をおすすめした人</div>
@@ -116,20 +116,24 @@
       </div>
     <% end %>
 
-    <% if user_signed_in? && current_user.id == @blog.user_id %>
+    <% if user_signed_in? %>
     <div class='row-9 form-group mt-3'>
-      <%= form_with model:[@blog, @comment], method: :post, local: false do |f| %>
-      <%= f.text_area :comment, rows: '5', placeholder: "コメントを書いてください。", class: "form-control" %>
-      <div class='text-right mt-2'>
+      <%= form_with model:[@blog, @comment], local: false do |f| %>
+        <%= f.text_area :comment, rows: '5', placeholder: "コメントを書いてください。", class: "form-control" %>
+        <div class='text-right mt-2'>
         <%= f.submit "コメントを送信",class: "btn btn-warning" %>
-      </div>
+        </div>
       <% end %>
     </div>
+    <% end %>
+
+    <% if user_signed_in? && current_user.id == @blog.user_id %>
       <div class='row mt-2'>
         <p class='mr-2'><%= link_to "商品を編集", edit_blog_path(@blog.id), class: "btn btn-info" %></p>
         <p><%= link_to "商品を削除", blog_path(@blog.id), method: :delete, class: "btn btn-danger" %></p>
       </div>
     <% end %>
+
     </div>
   </div>
 </div>
