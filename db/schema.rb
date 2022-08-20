@@ -61,10 +61,10 @@ ActiveRecord::Schema.define(version: 2022_08_16_074824) do
 
   create_table "blogs", force: :cascade do |t|
     t.integer "user_id"
-    t.text "title", default: "", null: false
-    t.text "body", default: "", null: false
-    t.text "man", default: "", null: false
-    t.text "link", default: "", null: false
+    t.text "title", null: false
+    t.text "body", null: false
+    t.text "man", null: false
+    t.text "link", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.float "star"
@@ -74,7 +74,7 @@ ActiveRecord::Schema.define(version: 2022_08_16_074824) do
   create_table "comments", force: :cascade do |t|
     t.integer "user_id"
     t.integer "blog_id"
-    t.text "comment", default: "", null: false
+    t.text "comment", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
