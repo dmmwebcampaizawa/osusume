@@ -20,7 +20,7 @@
               <% if blog.image.attached? %>
               <%= image_tag blog.image, size: "220x220" %>
               <% else %>
-              <%= image_tag 'no_image', size: "220x220" %>
+              <%= image_tag asset_path('no_image.jpg'), size: "220x220" %>
               <% end %>
               <p><%= blog.title %></p>
             <% end %>

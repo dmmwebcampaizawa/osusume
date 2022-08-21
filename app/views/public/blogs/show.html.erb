@@ -14,7 +14,7 @@
           <% if @blog.image.attached? %>
           <%= image_tag @blog.image, size: "250x250" %>
           <% else %>
-          <%= image_tag 'no_image', size: "250x250" %>
+          <%= image_tag asset_path('no_image.jpg'), size: "250x250" %>
           <% end %>
         </div>
         <div class='col-8'>
@@ -79,7 +79,7 @@
                 <% if @user.profile_image.attached? %>
                 <%= image_tag @user.profile_image, size: "100x100", class: 'rounded-circle' %>
                 <% else %>
-                <%= image_tag 'no_image', size: "100x100", class: 'rounded-circle' %>
+                <%= image_tag asset_path('no_image.jpg'), size: "100x100", class: 'rounded-circle' %>
                 <% end %>
             <% end %>
           </div>
