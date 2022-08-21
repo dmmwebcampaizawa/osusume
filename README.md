@@ -27,7 +27,9 @@
 - 引越しして家の家具を買い換えたい時
 
 ## 設計書
-
+-  [ER図](https://app.diagrams.net/#G1zN69wbvgkuOIB4xBkFxlqg14Pv3GJB8D)
+-  [テーブル定義書](https://docs.google.com/spreadsheets/d/1griug930LDx3bbp1g4BFcL0AN_L8ptWiV2cKUNJetuI/edit#gid=1357887079)
+-  [アプリケーション詳細設計書](https://docs.google.com/spreadsheets/d/1k26gTlklIowAUzyOWipmpb6fLGllJZy0LCfiCp749sk/edit#gid=549108681)
 
 ## 開発環境
 - OS：Linux(CentOS)
@@ -37,4 +39,4 @@
 - IDE：Cloud9
 
 ## 使用素材
-- 検討中です。
+- photo AC
