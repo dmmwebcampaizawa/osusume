@@ -15,9 +15,9 @@
             <div class="blog-box">
               <%= link_to blog_path(blog.id), class: 'text-dark font-weight-bold' do %>
                 <% if blog.image.attached? %>
-                  <%= image_tag blog.image, size: "250x250" %>
+                  <%= image_tag blog.image, size: "220x220" %>
                 <% else %>
-                  <%= image_tag asset_path('no_image.jpg'), size: "250x250" %>
+                  <%= image_tag asset_path('no_image.jpg'), size: "220x220" %>
                 <% end %>
                 <p><%= blog.title %></p>
               <% end %>
