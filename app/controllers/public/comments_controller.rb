@@ -3,6 +3,7 @@ class Public::CommentsController < ApplicationController
   def create
     @blog = Blog.find(params[:blog_id])
     @comment = Comment.new(comment_params)
+    @comment.score = Language.get_data(comment_params[:comment]) 
     @comment.user_id = current_user.id
     @comment.blog_id = @blog.id
     @comment.save
